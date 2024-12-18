@@ -36,8 +36,8 @@ pipeline {
             steps {
                 script {
                    sleep '150'
-                    ansiblePlaybook becomeUser: 'ec2-user', credentialsId: 'aws_credentials', disableHostKeyChecking: true, installation: 'ansible', inventory: '/var/lib/jenkins/workspace/ansible-tf/ansible-task/inventory.yaml', playbook: '/var/lib/jenkins/workspace/ansible-tf/ansible-task/linux_playbook.yml', vaultTmpPath: ''
-                    ansiblePlaybook become: true, credentialsId: 'aws_credentials', disableHostKeyChecking: true, installation: 'ansible', inventory: '/var/lib/jenkins/workspace/ansible-tf/ansible-task/inventory.yaml', playbook: '/var/lib/jenkins/workspace/ansible-tf/ansible-task/ubuntu-playbook.yml', vaultTmpPath: ''
+                    ansiblePlaybook becomeUser: 'ec2-user', credentialsId: 'aws_credentials', disableHostKeyChecking: true, installation: 'ansible', inventory: '/var/lib/jenkins/workspace/challenge/challenge-04/inventory.yaml', playbook: '/var/lib/jenkins/workspace/challenge/challenge-04/linux_playbook.yml', vaultTmpPath: ''
+                    ansiblePlaybook become: true, credentialsId: 'aws_credentials', disableHostKeyChecking: true, installation: 'ansible', inventory: '/var/lib/jenkins/workspace/challenge/challenge-04/inventory.yaml', playbook: '/var/lib/jenkins/workspace/challenge/challenge-04/ubuntu-playbook.yml', vaultTmpPath: ''
                 }
             }
         }
