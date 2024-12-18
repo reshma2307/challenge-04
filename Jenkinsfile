@@ -24,8 +24,8 @@ pipeline {
                     sh 'pwd'
                     sh 'terraform init'
                     sh 'terraform validate'
-                    sh 'terraform destroy -auto-approve'
-                    //sh 'terraform plan'
+                    //sh 'terraform destroy -auto-approve'
+                    sh 'terraform plan'
                     sh 'terraform apply -auto-approve'
                     }
                 }
