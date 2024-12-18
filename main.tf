@@ -14,7 +14,7 @@ resource "aws_instance" "c8" {
   user_data = <<-EOF
     #!/bin/bash
     sudo hostnamectl set-hostname c8.local
-    hostname=$(hostname)
+    hostname=$(c8.local)
   EOF
 }
 
