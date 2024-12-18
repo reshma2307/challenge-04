@@ -1,5 +1,9 @@
 pipeline {
     agent any
+      environment {
+        AWS_ACCESS_KEY_ID = credentials('aws_credentials')  // ID from Jenkins credentials store
+        AWS_SECRET_ACCESS_KEY = credentials('aws_credentials')  // ID from Jenkins credentials store
+     }
 
     stages {
         
@@ -19,8 +23,8 @@ pipeline {
                     sh 'pwd'
                     sh 'terraform init'
                     sh 'terraform validate'
-                    // sh 'terraform destroy -auto-approve'
-                    sh 'terraform plan'
+                    sh 'terraform destroy -auto-approve'
+                    //sh 'terraform plan'
                     sh 'terraform apply -auto-approve'
                     }
                 }
@@ -31,7 +35,7 @@ pipeline {
             steps {
                 script {
                    sleep '150'
-                    ansiblePlaybook becomeUser: 'ec2-user', credentialsId: 'aws_credentials', disableHostKeyChecking: true, installation: 'ansible', inventory: '/var/lib/jenkins/workspace/ansible-tf/ansible-task/inventory.yaml', playbook: '/var/lib/jenkins/workspace/ansible-tf/ansible-task/amazon-playbook.yml', vaultTmpPath: ''
+                    ansiblePlaybook becomeUser: 'ec2-user', credentialsId: 'aws_credentials', disableHostKeyChecking: true, installation: 'ansible', inventory: '/var/lib/jenkins/workspace/ansible-tf/ansible-task/inventory.yaml', playbook: '/var/lib/jenkins/workspace/ansible-tf/ansible-task/linux-playbook.yml', vaultTmpPath: ''
                     ansiblePlaybook become: true, credentialsId: 'aws_credentials', disableHostKeyChecking: true, installation: 'ansible', inventory: '/var/lib/jenkins/workspace/ansible-tf/ansible-task/inventory.yaml', playbook: '/var/lib/jenkins/workspace/ansible-tf/ansible-task/ubuntu-playbook.yml', vaultTmpPath: ''
                 }
             }
