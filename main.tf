@@ -41,11 +41,12 @@ output "u21_public_ip" {
 }
 
 resource "local_file" "ansible_inventory" {
-  content = <<EOT
+  content = <<EOF
+  filename = "./inventory.yaml"
 [frontend]
-${aws_instance.c8.private_ip} ansible_host=${aws_instance.c8.private_ip} ansible_user=ec2-user
+${aws_instance.c8.public_ip} 
 
 [backend]
-${aws_instance.u21.private_ip} ansible_host=${aws_instance.u21.private_ip} ansible_user=ubuntu
-EOT
-  filename = "ansible/hosts"
+${aws_instance.u21.public_ip} 
+EOF
+}
